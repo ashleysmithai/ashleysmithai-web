@@ -36,6 +36,17 @@ Point your skill loader at the live URLs above. Each skill is a single `SKILL.md
 
 Clone or fork this repo, open the `SKILL.md` you want, and adapt it to your own stack. The skills are written to be lifted and tailored — rename the skill, swap your platforms into the lists, add your industry's software, change the trigger phrases to match how your team actually talks. Rip and reuse (R&D).
 
+## Note on public-safe variants
+
+Defensive security documentation often contains the exact patterns it exists to detect — example injection strings, credential-adjacent keywords, grep lines full of password / token / exfiltration vocabulary. Google Safe Browsing's deceptive-content classifier can't distinguish that from an actual phishing playbook. v1.1 of `prompt-injection-shield` got ashleysmithai.com flagged as deceptive within hours of publishing (VirusTotal clean across every vendor — classifier false positive, not a compromise).
+
+If you fork a security-adjacent skill and publish it on your own domain, either:
+
+1. **Use the public-safe variant as-is.** Methodology and the three guardrails stay on the public side; the exhaustive detection library lives in a private operator repo.
+2. **Or keep your detection patterns behind a login or in a private repo** and point your agents at the private URL. Public patterns are easier for attackers to evade anyway, so there's an opsec argument for keeping them private regardless of classifier concerns.
+
+Non-security skills (`cloudflare-agent-readiness`, future entries) don't carry this risk and can be rip-and-reused directly.
+
 ## Categorization
 
 Flat for now. When the skill count grows past what a single scroll of the README can hold, I'll add category subdirectories (`skills/web/…`, `skills/ai-safety/…`, etc.) rather than letting it turn into a mystery pile.
